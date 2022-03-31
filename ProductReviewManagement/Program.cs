@@ -49,12 +49,16 @@ namespace ProductReviewManagement
                 Console.WriteLine("ProductID: " + item.productId + " Count:" + item.Count);
             }
 
+            //return only ID and review
             var result4 = (from product in products select product).Select(x => new { productID = x.productId, Review = x.review });
             foreach (var item in result4)
             {
                 Console.WriteLine("ProductID:" + item.productID + " Review:" + item.Review);
             }
 
+            //skip top 5 records
+            var result5 = products.Skip(5);
+            Display(result5.ToList());
             Console.ReadLine();
         }
     }
