@@ -19,10 +19,16 @@ namespace ProductReviewManagement
                 new Products() { productId = 5, userId = 5, rating = 7, review = "good", isLike = true },
                 new Products() { productId = 8, userId = 5, rating = 7, review = "good", isLike = true },
                 new Products() { productId = 8, userId = 4, rating = 5, review = "bad", isLike = false },
-                new Products() { productId = 8, userId = 3, rating = 6, review = "good", isLike = true },
-                new Products() { productId = 6, userId = 2, rating = 6, review = "good", isLike = true },
+                new Products() { productId = 8, userId = 3, rating = 10, review = "good", isLike = true },
+                new Products() { productId = 6, userId = 2, rating = 9, review = "good", isLike = true },
                 new Products() { productId = 7, userId = 1, rating = 4, review = "bad", isLike = false }
             };
+            var result = products.OrderByDescending(x => x.rating).Take(3);
+            foreach (var product in result)
+            {
+                Console.WriteLine(product.rating);
+            }
+        Console.ReadLine();
         }
     }
 }
