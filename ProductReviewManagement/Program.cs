@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,13 @@ namespace ProductReviewManagement
 {
     internal class Program
     {
+        public static void DisplayTable(DataTable product)
+        {
+            foreach (DataRow row in product.Rows)
+            {
+                Console.WriteLine("ProductID: " + row["ProductID"] + " Rating: " + row["Rating"]);
+            }
+        }
         public static void Display(List<Products> result)
         {
             foreach (var product in result)
@@ -59,6 +67,30 @@ namespace ProductReviewManagement
             //skip top 5 records
             var result5 = products.Skip(5);
             Display(result5.ToList());
+            
+
+            //DataTable created
+            DataTable datatable = new DataTable();
+            
+            datatable.Columns.Add("UserID", typeof(int));
+            datatable.Columns.Add("Rating", typeof(int));
+            datatable.Columns.Add("ProductID", typeof(int));
+            datatable.Columns.Add("Review");
+            datatable.Columns.Add("IsLike", typeof(bool));
+            datatable.Rows.Add(1, 19, 1, "bad", "false");
+            datatable.Rows.Add(2, 75, 5, "good", "true");
+            datatable.Rows.Add(3, 7, 2, "good", "true");
+            datatable.Rows.Add(4, 98, 4, "good", "true");
+            datatable.Rows.Add(5, 35, 1, "bad", "false");
+            datatable.Rows.Add(6, 10, 5, "good", "true");
+            datatable.Rows.Add(7, 11, 2, "good", "true");
+            datatable.Rows.Add(8, 52, 4, "good", "true");
+            datatable.Rows.Add(9, 20, 1, "bad", "false");
+            datatable.Rows.Add(10, 77, 5, "good", "true");
+            datatable.Rows.Add(11, 85, 2, "good", "true");
+            datatable.Rows.Add(12, 51, 4, "good", "true");
+
+            DisplayTable(datatable);
             Console.ReadLine();
         }
     }
