@@ -9,6 +9,15 @@ namespace ProductReviewManagement
 {
     internal class Program
     {
+        
+        public static void Display(List<Products> result)
+        {
+            foreach (var product in result)
+            {
+                Console.WriteLine("ProductID:" + product.productId + " UserID:" + product.userId + " Rating:" + product.rating);
+            }
+        }
+        
         public static void DisplayTable(DataTable product)
         {
             foreach (DataRow row in product.Rows)
@@ -16,11 +25,14 @@ namespace ProductReviewManagement
                 Console.WriteLine("ProductID: " + row["ProductID"] + " Rating: " + row["Rating"]);
             }
         }
-        public static void Display(List<Products> result)
+
+        //return records whose isLike value is true
+        public static void IsLike(List<Products> list)
         {
-            foreach (var product in result)
+            var recorddata = from product in list where (product.isLike == true) select product;
+            foreach (Products product in recorddata)
             {
-                Console.WriteLine("ProductID:" + product.productId + " UserID:" + product.userId + " Rating:" + product.rating);
+                Console.WriteLine(product.productId + " " + product.userId + " " + product.rating + " " + product.review + " " + product.isLike);
             }
         }
         static void Main(string[] args)
@@ -91,6 +103,10 @@ namespace ProductReviewManagement
             datatable.Rows.Add(12, 51, 4, "good", "true");
 
             DisplayTable(datatable);
+
+            IsLike(products);
+            
+
             Console.ReadLine();
         }
     }
