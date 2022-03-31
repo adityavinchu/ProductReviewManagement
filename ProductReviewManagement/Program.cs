@@ -48,6 +48,13 @@ namespace ProductReviewManagement
             {
                 Console.WriteLine("ProductID: " + item.productId + " Count:" + item.Count);
             }
+
+            var result4 = (from product in products select product).Select(x => new { productID = x.productId, Review = x.review });
+            foreach (var item in result4)
+            {
+                Console.WriteLine("ProductID:" + item.productID + " Review:" + item.Review);
+            }
+
             Console.ReadLine();
         }
     }
