@@ -35,6 +35,18 @@ namespace ProductReviewManagement
                 Console.WriteLine(product.productId + " " + product.userId + " " + product.rating + " " + product.review + " " + product.isLike);
             }
         }
+
+        //find average rating of each product
+        public static void AverageOfRecord(List<Products> list)
+        {
+            var productIds = (from product in list select product.productId).Distinct();
+            Console.WriteLine("productId  AverageRating");
+            foreach (var pd in productIds)
+            {
+                var recorddata = (from product in list where product.productId == pd select product).Average(x => x.rating);
+                Console.WriteLine(pd + "   " + recorddata);
+            }
+        }
         static void Main(string[] args)
         {
             List<Products> products = new List<Products>()
@@ -105,7 +117,8 @@ namespace ProductReviewManagement
             DisplayTable(datatable);
 
             IsLike(products);
-            
+
+            AverageOfRecord(products);
 
             Console.ReadLine();
         }
