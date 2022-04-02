@@ -41,10 +41,10 @@ namespace ProductReviewManagement
         {
             var productIds = (from product in list select product.productId).Distinct();
             Console.WriteLine("productId  AverageRating");
-            foreach (var pd in productIds)
+            foreach (var pID in productIds)
             {
-                var recorddata = (from product in list where product.productId == pd select product).Average(x => x.rating);
-                Console.WriteLine(pd + "   " + recorddata);
+                var recorddata = (from product in list where product.productId == pID select product).Average(x => x.rating);
+                Console.WriteLine(pID + "                 " + recorddata);
             }
         }
         static void Main(string[] args)
